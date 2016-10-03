@@ -8,8 +8,19 @@
   <script>
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-    if (readyState === 4) {
-      document.getElementById('ajax').innerHTML = xhr.responseText;
+    if (xhr.readyState === 4) {
+      if(xhr.status ===200){
+        document.getElementById('ajax').innerHTML = xhr.responseText;
+      }else {
+        if(xhr.status ===404){
+          alert("File not found.");
+        }
+      }else {
+        if(xhr.status ===500){
+          alert("There is a server problem. Please try again later.");
+        }
+      }
+
     }
   };
   xhr.open('GET','sidebar.html');
